@@ -1,11 +1,20 @@
 package cn.babasport.pojo.test;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class BbsTest {
+public class BbsTest implements Serializable {
 	private Integer id;
 	private String name;
-	private Date brithday;
+	private Date birthday;
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 
 	public Integer getId() {
 		return id;
@@ -23,11 +32,5 @@ public class BbsTest {
 		this.name = name;
 	}
 
-	public Date getBrithday() {
-		return brithday;
-	}
 
-	public void setBrithday(Date brithday) {
-		this.brithday = brithday;
-	}
  }

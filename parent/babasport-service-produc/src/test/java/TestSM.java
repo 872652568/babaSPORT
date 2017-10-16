@@ -6,14 +6,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.babasport.mapper.test.BbsTestMapper;
 import cn.babasport.pojo.test.BbsTest;
 import cn.babasport.service.test.BbsTestService;
 
 
-@ContextConfiguration(locations={"classpath:spring-config.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"classpath:spring-config.xml"})
 public class TestSM {
 		@Resource
 		private BbsTestMapper bbsTestMapper;
@@ -25,7 +26,7 @@ public class TestSM {
 		public void testMybatis(){
 			BbsTest bbsTest = new BbsTest();
 			bbsTest.setName("tom");
-			bbsTest.setBrithday(new Date());
+			bbsTest.setBirthday(new Date());
 			bbsTestMapper.insertBbsTest(bbsTest);
 		}
 		
@@ -34,7 +35,8 @@ public class TestSM {
 		public void testService(){
 			BbsTest bbsTest = new BbsTest();
 			bbsTest.setName("jack");
-			bbsTest.setBrithday(new Date());
-			bbsTestMapper.insertBbsTest(bbsTest);
+			bbsTest.setBirthday(new Date());
+			bbsTestService.insertBbsTest(bbsTest);
 		}
+	
 }
