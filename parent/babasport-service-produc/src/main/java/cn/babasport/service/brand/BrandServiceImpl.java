@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.babasport.mapper.product.BrandMapper;
 import cn.babasport.pojo.page.Pagination;
@@ -65,6 +66,29 @@ public class BrandServiceImpl implements BrandService {
 	public Brand selectBrandById(Long id) {
 		Brand brandById = brandMapper.selectBrandById(id);
 		return brandById;
+	}
+
+	@Transactional
+	@Override
+	public void updateBrand(Brand brand) {
+		brandMapper.updateBrand(brand);
+	}
+
+	@Transactional
+	@Override
+	public void insertBrand(Brand brand) {
+		brandMapper.insertBrand(brand);
+	}
+
+	@Override
+	public void deleteBatchBrands(Long[] ids) {
+		brandMapper.deleteBatchBrands(ids);
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		brandMapper.deleteById(id);
+		
 	}
 
 }

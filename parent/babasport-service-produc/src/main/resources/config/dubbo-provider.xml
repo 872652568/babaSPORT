@@ -34,6 +34,8 @@
 	<!-- 暴露服务到注册中心上 -->
 	<dubbo:service ref="bbsTestService" interface="cn.babasport.service.test.BbsTestService"/>
 	<dubbo:service ref="brandService" interface="cn.babasport.service.brand.BrandService"/>
+	<dubbo:service ref="uploadService" interface="cn.babasport.service.upload.UploadService"/>
+	<dubbo:service ref="productService" interface="cn.babasport.service.product.ProductService"/>
 	
 		
 		

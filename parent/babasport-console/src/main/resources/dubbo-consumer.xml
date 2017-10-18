@@ -34,6 +34,8 @@
 	<!-- 引用服务 -->
 	<dubbo:reference id="bbsTestService" interface="cn.babasport.service.test.BbsTestService" url="dubbo://127.0.0.1:20880" />
 	<dubbo:reference id="brandService" interface="cn.babasport.service.brand.BrandService" url="dubbo://127.0.0.1:20880" />
+	<dubbo:reference id="uploadService" interface="cn.babasport.service.upload.UploadService" url="dubbo://127.0.0.1:20880" />
+	<dubbo:reference id="productService" interface="cn.babasport.service.product.ProductService" url="dubbo://127.0.0.1:20880" />
 	
 	<!-- 配置全局连接超时时间 -->
 	<dubbo:consumer timeout="60000000"/>

@@ -5,13 +5,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>babasport-list</title>
+<script type="text/javascript">
+	
+	// 全选操作
+	function checkBox(ids, checked){
+		$("input[name='"+ids+"']").attr("checked",checked);
+	}
+	
+	// 批量删除
+ 	function optDelete(name,isDisplay,pageNo){
+		// 1、判断是否已选了品牌
+		var size = $("input[name='ids']:checked").size();
+		if(size <= 0){
+			alert("请至少选择一个品牌！");
+			return;
+		}
+		// 2、提示是否删除
+		if(!confirm('您确定删除吗？')){ // 确定：true  取消：false
+			return;
+		}
+		// 3、批量删除请求的url
+		var jvForm = $("#jvForm");
+			
+		jvForm.attr("action","/brand/deleteBatchBrands.do?name="+name+"&isDisplay="+isDisplay+"&pageNo="+pageNo);
+		
+		jvForm.attr("method","post").submit();
+	} 
+	
+</script>
+
 </head>
 <body>
 	<div class="box-positon">
 		<div class="rpos">当前位置: 品牌管理 - 列表</div>
 		<form class="ropt">
 			<input class="add" type="button" value="添加"
-				onclick="javascript:window.location.href='add.jsp'" />
+				onclick="javascript:window.location.href='add.do'" />
 		</form>
 		<div class="clear"></div>
 	</div>
@@ -25,6 +54,7 @@
 					<c:if test="${isDisplay == 0 }" >selected="selected"</c:if>>否</option>
 			</select> <input type="submit" class="query" value="查询" />
 		</form>
+		<form id="jvForm">
 		<table cellspacing="1" cellpadding="0" border="0" width="100%"
 			class="pn-ltable">
 			<thead class="pn-lthead">
@@ -48,14 +78,14 @@
 						<td align="center">${brand.id }</td>
 						<td align="center">${brand.name }</td>
 						<td align="center"><img width="40" height="40"
-							src="/images/pic/ppp.jpg" /></td>
+							src="${brand.allUrl }" /></td>
 						<td align="center">${brand.description }</td>
 						<td align="center">${brand.sort}</td>
 						<td align="center"><c:if test="${brand.isDisplay == 1 }">是</c:if>
 							<c:if test="${brand.isDisplay == 0 }">否</c:if></td>
 						<td align="center"><a class="pn-opt" href="/brand/edit.do?id=${brand.id }">修改</a> | <a
 							class="pn-opt" onclick="if(!confirm('您确定删除吗？')) {return false;}"
-							href="#">删除</a></td>
+							href="/brand/deleteById.do?id=${brand.id }">删除</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -69,7 +99,7 @@
 		</div>
 		<div style="margin-top: 15px;">
 			<input class="del-button" type="button" value="删除"
-				onclick="optDelete();" />
+				onclick="optDelete('${name}','${isDisplay}','${pageNo}');" />
 		</div>
 	</div>
 </body>

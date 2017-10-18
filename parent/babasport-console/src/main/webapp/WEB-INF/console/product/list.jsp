@@ -38,13 +38,14 @@ function isShow(){
 <form action="/product/list.do" method="post" style="padding-top:5px;">
 名称: <input type="text" name="name"/>
 	<select name="brandId">
-		<option value="">请选择品牌</option>
-		<option value="1">依琦莲</option>
-		<option value="2">凯速（KANSOON）</option>
+			<option value="">请选择品牌</option>
+		<c:forEach items="${brands }" var="brand">
+			<option value="${brand.id }" <c:if test="${brand.id == brandId }">selected="selected"</c:if>>${brand.name }</option>
+		</c:forEach>
 	</select>
 	<select name="isShow">
-		<option value="1">上架</option>
-		<option selected="selected" value="0">下架</option>
+		<option value="1" <c:if test="${isShow }">selected="selected"</c:if>>上架</option>
+		<option value="0" <c:if test="${!isShow }">selected="selected"</c:if>>下架</option>
 	</select>
 	<input type="submit" class="query" value="查询"/>
 </form>
@@ -64,71 +65,24 @@ function isShow(){
 		</tr>
 	</thead>
 	<tbody class="pn-ltbody">
-		<tr bgcolor="#ffffff" onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
-			<td><input type="checkbox" name="ids" value="73"/></td>
-			<td>20141028114510003</td>
-			<td align="center">依琦莲2014瑜伽服套装新款 瑜珈健身服三件套 广场舞蹈服装 女瑜伽服送胸垫 长袖紫色</td>
-			<td align="center"><img width="50" height="50" src="/images/pic/ppp.jpg"/></td>
-			<td align="center">是</td>
-			<td align="center">是</td>
-			<td align="center">是</td>
-			<td align="center">下架</td>
-			<td align="center">
-			<a href="#" class="pn-opt">查看</a> | <a href="#" class="pn-opt">修改</a> | <a href="#" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a> | <a href="../sku/list.jsp" class="pn-opt">库存</a>
-			</td>
-		</tr>
-		<tr bgcolor="#ffffff" onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
-			<td><input type="checkbox" name="ids" value="73"/></td>
-			<td>20141028114411609</td>
-			<td align="center">依琦莲2014瑜伽服套装新款 瑜珈健身服三件套 广场舞蹈服装 女瑜伽服送胸垫 长袖紫色</td>
-			<td align="center"><img width="50" height="50" src="/images/pic/ppp1.jpg"/></td>
-			<td align="center">否</td>
-			<td align="center">是</td>
-			<td align="center">否</td>
-			<td align="center">下架</td>
-			<td align="center">
-			<a href="#" class="pn-opt">查看</a> | <a href="#" class="pn-opt">修改</a> | <a href="#" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a> | <a href="../sku/list.jsp" class="pn-opt">库存</a>
-			</td>
-		</tr>
-		<tr bgcolor="#ffffff" onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
-			<td><input type="checkbox" name="ids" value="73"/></td>
-			<td>20141028114409502</td>
-			<td align="center">依琦莲2014瑜伽服套装新款 瑜珈健身服三件套 广场舞蹈服装 女瑜伽服送胸垫 长袖紫色</td>
-			<td align="center"><img width="50" height="50" src="/images/pic/ppp2.jpg"/></td>
-			<td align="center">否</td>
-			<td align="center">是</td>
-			<td align="center">否</td>
-			<td align="center">下架</td>
-			<td align="center">
-			<a href="#" class="pn-opt">查看</a> | <a href="#" class="pn-opt">修改</a> | <a href="#" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a> | <a href="../sku/list.jsp" class="pn-opt">库存</a>
-			</td>
-		</tr>
-		<tr bgcolor="#ffffff" onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
-			<td><input type="checkbox" name="ids" value="73"/></td>
-			<td>20141028114407438</td>
-			<td align="center">依琦莲2014瑜伽服套装新款 瑜珈健身服三件套 广场舞蹈服装 女瑜伽服送胸垫 长袖紫色</td>
-			<td align="center"><img width="50" height="50" src="/images/pic/ppp3.jpg"/></td>
-			<td align="center">否</td>
-			<td align="center">是</td>
-			<td align="center">否</td>
-			<td align="center">下架</td>
-			<td align="center">
-			<a href="#" class="pn-opt">查看</a> | <a href="#" class="pn-opt">修改</a> | <a href="#" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a> | <a href="../sku/list.jsp" class="pn-opt">库存</a>
-			</td>
-		</tr>
-		<tr bgcolor="#ffffff" onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
-			<td><input type="checkbox" name="ids" value="73"/></td>
-			<td>20141028114405217</td>
-			<td align="center">依琦莲2014瑜伽服套装新款 瑜珈健身服三件套 广场舞蹈服装 女瑜伽服送胸垫 长袖紫色</td>
-			<td align="center"><img width="50" height="50" src="/images/pic/ppp4.jpg"/></td>
-			<td align="center">否</td>
-			<td align="center">是</td>
-			<td align="center">否</td>
-			<td align="center">下架</td>
-			<td align="center">
-			<a href="#" class="pn-opt">查看</a> | <a href="#" class="pn-opt">修改</a> | <a href="#" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a> | <a href="../sku/list.jsp" class="pn-opt">库存</a>
-			</td>
-		</tr>
+		<c:forEach items="${pagination.list }" var="product">
+			<tr bgcolor="#ffffff" onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
+				<td><input type="checkbox" name="ids" value="${product.id }"/></td>
+				<td>${product.id }</td>
+				<td align="center">${product.name }</td>
+				<td align="center"><img width="50" height="50" src="/images/pic/ppp.jpg"/></td>
+				<td align="center">是</td>
+				<td align="center">是</td>
+				<td align="center">是</td>
+				<td align="center">
+					<c:if test="${product.isShow }">上架</c:if>
+					<c:if test="${!product.isShow }">下架</c:if>
+				</td>
+				<td align="center">
+				<a href="#" class="pn-opt">查看</a> | <a href="#" class="pn-opt">修改</a> | <a href="#" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a> | <a href="../sku/list.jsp" class="pn-opt">库存</a>
+				</td>
+			</tr>
+		</c:forEach>
 	</tbody>
 </table>
 <div class="page pb15">
