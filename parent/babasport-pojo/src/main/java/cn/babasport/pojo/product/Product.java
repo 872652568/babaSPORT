@@ -81,6 +81,13 @@ public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public String[] getImgUrls(){ // 用于jsp页面回显
+    	if(imgUrl != null){
+    		return imgUrl.split(",");
+    	}
+    	return null;
+    }
+    
     public Long getId() {
         return id;
     }

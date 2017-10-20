@@ -4,153 +4,163 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Sku implements Serializable {
-    /**
-     * ID
-     */
-    private Long id;
+	/**
+	 * ID
+	 */
+	private Long id;
 
-    /**
-     * 商品ID
-     */
-    private Long productId;
+	/**
+	 * 商品ID
+	 */
+	private Long productId;
 
-    /**
-     * 颜色ID
-     */
-    private Long colorId;
+	/**
+	 * 颜色ID
+	 */
+	private Long colorId;
 
-    /**
-     * 尺码
-     */
-    private String size;
+	/**
+	 * 尺码
+	 */
+	private String size;
 
-    /**
-     * 市场价
-     */
-    private Float marketPrice;
+	/**
+	 * 市场价
+	 */
+	private Float marketPrice;
 
-    /**
-     * 售价
-     */
-    private Float price;
+	/**
+	 * 售价
+	 */
+	private Float price;
 
-    /**
-     * 运费 默认10元
-     */
-    private Float deliveFee;
+	/**
+	 * 运费 默认10元
+	 */
+	private Float deliveFee;
 
-    /**
-     * 库存
-     */
-    private Integer stock;
+	/**
+	 * 库存
+	 */
+	private Integer stock;
 
-    /**
-     * 购买限制
-     */
-    private Integer upperLimit;
+	/**
+	 * 购买限制
+	 */
+	private Integer upperLimit;
 
-    private Date createTime;
+	private Date createTime;
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    public Long getId() {
-        return id;
-    }
+	private Color color;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Color getColor() {
+		return color;
+	}
 
-    public Long getProductId() {
-        return productId;
-    }
+	public void setColor(Color color) {
+		this.color = color;
+	}
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Long getColorId() {
-        return colorId;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setColorId(Long colorId) {
-        this.colorId = colorId;
-    }
+	public Long getProductId() {
+		return productId;
+	}
 
-    public String getSize() {
-        return size;
-    }
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
 
-    public void setSize(String size) {
-        this.size = size == null ? null : size.trim();
-    }
+	public Long getColorId() {
+		return colorId;
+	}
 
-    public Float getMarketPrice() {
-        return marketPrice;
-    }
+	public void setColorId(Long colorId) {
+		this.colorId = colorId;
+	}
 
-    public void setMarketPrice(Float marketPrice) {
-        this.marketPrice = marketPrice;
-    }
+	public String getSize() {
+		return size;
+	}
 
-    public Float getPrice() {
-        return price;
-    }
+	public void setSize(String size) {
+		this.size = size == null ? null : size.trim();
+	}
 
-    public void setPrice(Float price) {
-        this.price = price;
-    }
+	public Float getMarketPrice() {
+		return marketPrice;
+	}
 
-    public Float getDeliveFee() {
-        return deliveFee;
-    }
+	public void setMarketPrice(Float marketPrice) {
+		this.marketPrice = marketPrice;
+	}
 
-    public void setDeliveFee(Float deliveFee) {
-        this.deliveFee = deliveFee;
-    }
+	public Float getPrice() {
+		return price;
+	}
 
-    public Integer getStock() {
-        return stock;
-    }
+	public void setPrice(Float price) {
+		this.price = price;
+	}
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
+	public Float getDeliveFee() {
+		return deliveFee;
+	}
 
-    public Integer getUpperLimit() {
-        return upperLimit;
-    }
+	public void setDeliveFee(Float deliveFee) {
+		this.deliveFee = deliveFee;
+	}
 
-    public void setUpperLimit(Integer upperLimit) {
-        this.upperLimit = upperLimit;
-    }
+	public Integer getStock() {
+		return stock;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public Integer getUpperLimit() {
+		return upperLimit;
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", productId=").append(productId);
-        sb.append(", colorId=").append(colorId);
-        sb.append(", size=").append(size);
-        sb.append(", marketPrice=").append(marketPrice);
-        sb.append(", price=").append(price);
-        sb.append(", deliveFee=").append(deliveFee);
-        sb.append(", stock=").append(stock);
-        sb.append(", upperLimit=").append(upperLimit);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
-    }
+	public void setUpperLimit(Integer upperLimit) {
+		this.upperLimit = upperLimit;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getClass().getSimpleName());
+		sb.append(" [");
+		sb.append("Hash = ").append(hashCode());
+		sb.append(", id=").append(id);
+		sb.append(", productId=").append(productId);
+		sb.append(", colorId=").append(colorId);
+		sb.append(", size=").append(size);
+		sb.append(", marketPrice=").append(marketPrice);
+		sb.append(", price=").append(price);
+		sb.append(", deliveFee=").append(deliveFee);
+		sb.append(", stock=").append(stock);
+		sb.append(", upperLimit=").append(upperLimit);
+		sb.append(", createTime=").append(createTime);
+		sb.append(", serialVersionUID=").append(serialVersionUID);
+		sb.append("]");
+		return sb.toString();
+	}
 }

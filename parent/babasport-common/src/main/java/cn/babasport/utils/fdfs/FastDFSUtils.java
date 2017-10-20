@@ -9,11 +9,22 @@ import org.springframework.core.io.ClassPathResource;
 
 /**
  * 
- * @ClassName: FastDFSUtils
- * @Company: http://www.itcast.cn/
- * @Description: FastDFS工具类
- * @date 2017年10月18日 上午9:54:39
+ *
+ *   █████▒█    ██  ▄████▄   ██ ▄█▀       ██████╗ ██╗   ██╗ ██████╗
+ * ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒        ██╔══██╗██║   ██║██╔════╝
+ * ▒████ ░▓██  ▒██░▒▓█    ▄ ▓███▄░        ██████╔╝██║   ██║██║  ███╗
+ * ░▓█▒  ░▓▓█  ░██░▒▓▓▄ ▄██▒▓██ █▄        ██╔══██╗██║   ██║██║   ██║
+ * ░▒█░   ▒▒█████▓ ▒ ▓███▀ ░▒██▒ █▄       ██████╔╝╚██████╔╝╚██████╔╝
+ *  ▒ ░   ░▒▓▒ ▒ ▒ ░ ░▒ ▒  ░▒ ▒▒ ▓▒       ╚═════╝  ╚═════╝  ╚═════╝
+ *  ░     ░░▒░ ░ ░   ░  ▒   ░ ░▒ ▒░
+ *  ░ ░    ░░░ ░ ░ ░        ░ ░░ ░
+ *           ░     ░ ░      ░  ░
+ * 说明：FastDFS工具类
+ * @author 大富豪.嘉祥先生
+ * @version 1.0
+ * @date 2017年10月19日
  */
+ 
 public class FastDFSUtils {
 
 	public static String uploadPicToFastDFS(byte[] file_buff, String filename) throws Exception{

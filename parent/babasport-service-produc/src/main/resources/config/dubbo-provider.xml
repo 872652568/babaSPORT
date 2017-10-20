@@ -36,6 +36,8 @@
 	<dubbo:service ref="brandService" interface="cn.babasport.service.brand.BrandService"/>
 	<dubbo:service ref="uploadService" interface="cn.babasport.service.upload.UploadService"/>
 	<dubbo:service ref="productService" interface="cn.babasport.service.product.ProductService"/>
+	<dubbo:service ref="colorService" interface="cn.babasport.service.color.ColorService"/>
+	<dubbo:service ref="skuService" interface="cn.babasport.service.sku.SkuService"/>
 	
 		
 		

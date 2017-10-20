@@ -30,7 +30,7 @@ function isShow(){
 <div class="box-positon">
 	<div class="rpos">当前位置: 商品管理 - 列表</div>
 	<form class="ropt">
-		<input class="add" type="button" value="添加" onclick="window.location.href='add.jsp'"/>
+		<input class="add" type="button" value="添加" onclick="window.location.href='add.do'"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -65,12 +65,12 @@ function isShow(){
 		</tr>
 	</thead>
 	<tbody class="pn-ltbody">
-		<c:forEach items="${pagination.list }" var="product">
+		<c:forEach items="${pagination.list}" var="product">
 			<tr bgcolor="#ffffff" onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
 				<td><input type="checkbox" name="ids" value="${product.id }"/></td>
 				<td>${product.id }</td>
 				<td align="center">${product.name }</td>
-				<td align="center"><img width="50" height="50" src="/images/pic/ppp.jpg"/></td>
+				<td align="center"><img width="50" height="50" src="${product.imgUrls[0] }"/></td>
 				<td align="center">是</td>
 				<td align="center">是</td>
 				<td align="center">是</td>
@@ -79,7 +79,7 @@ function isShow(){
 					<c:if test="${!product.isShow }">下架</c:if>
 				</td>
 				<td align="center">
-				<a href="#" class="pn-opt">查看</a> | <a href="#" class="pn-opt">修改</a> | <a href="#" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a> | <a href="../sku/list.jsp" class="pn-opt">库存</a>
+				<a href="#" class="pn-opt">查看</a> | <a href="#" class="pn-opt">修改</a> | <a href="#" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a> | <a href="/sku/list.do?productId=${product.id }" class="pn-opt">库存</a>
 				</td>
 			</tr>
 		</c:forEach>
@@ -87,27 +87,9 @@ function isShow(){
 </table>
 <div class="page pb15">
 	<span class="r inb_a page_b">
-	
-		<font size="2">首页</font>
-	
-		<font size="2">上一页</font>
-	
-		<strong>1</strong>
-	
-		<a href="/product/list.do?&amp;isShow=0&amp;pageNo=2">2</a>
-	
-		<a href="/product/list.do?&amp;isShow=0&amp;pageNo=3">3</a>
-	
-		<a href="/product/list.do?&amp;isShow=0&amp;pageNo=4">4</a>
-	
-		<a href="/product/list.do?&amp;isShow=0&amp;pageNo=5">5</a>
-	
-		<a href="/product/list.do?&amp;isShow=0&amp;pageNo=2"><font size="2">下一页</font></a>
-	
-		<a href="/product/list.do?&amp;isShow=0&amp;pageNo=5"><font size="2">尾页</font></a>
-	
-		共<var>5</var>页 到第<input type="text" size="3" id="PAGENO"/>页 <input type="button" onclick="javascript:window.location.href = '/product/list.do?&amp;isShow=0&amp;pageNo=' + $('#PAGENO').val() " value="确定" class="hand btn60x20" id="skip"/>
-	
+		<c:forEach items="${pagination.pageView }" var="page">
+			${page }
+		</c:forEach>
 	</span>
 </div>
 <div style="margin-top:15px;"><input class="del-button" type="button" value="删除" onclick="optDelete();"/><input class="add" type="button" value="上架" onclick="isShow();"/><input class="del-button" type="button" value="下架" onclick="isHide();"/></div>
