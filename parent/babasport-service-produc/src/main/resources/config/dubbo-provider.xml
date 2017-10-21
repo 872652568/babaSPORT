@@ -23,13 +23,14 @@
 	<!-- dubbo服务提供方配置 -->
 	
 	<!-- 配置应用的名称：用于监控 -->
-	<dubbo:application name="service-product"/>
+	<dubbo:application name="service-solr"/>
 	
 	<!-- 配置注册中心 -->
 	<!-- <dubbo:registry protocol="zookeeper" address="192.168.171.130:2181"/> -->
 	<!-- 配置dubbo直连 -->
 	<dubbo:registry address="N/A"/>
 	<dubbo:protocol name="dubbo" port="20880"/>
+	
 	
 	<!-- 暴露服务到注册中心上 -->
 	<dubbo:service ref="bbsTestService" interface="cn.babasport.service.test.BbsTestService"/>
@@ -38,7 +39,7 @@
 	<dubbo:service ref="productService" interface="cn.babasport.service.product.ProductService"/>
 	<dubbo:service ref="colorService" interface="cn.babasport.service.color.ColorService"/>
 	<dubbo:service ref="skuService" interface="cn.babasport.service.sku.SkuService"/>
-	
+
 		
 		
 </beans>

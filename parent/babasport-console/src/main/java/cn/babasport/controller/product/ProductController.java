@@ -32,7 +32,7 @@ public class ProductController {
 
 	// 商品列表查询
 	@RequestMapping("/list.do")
-	public String list(String name, Long brandId, Boolean isShow, Integer pageNo, Model model){
+	public String list(String name, Long brandId, Boolean isShow, Integer pageNo, Model model) {
 		// 初始化品牌信息
 		List<Brand> brands = brandService.selectBrandsNoPage(null, 1);
 		model.addAttribute("brands", brands);
@@ -64,6 +64,12 @@ public class ProductController {
 		productService.insertProduct(product);
 		return "redirect:list.do";
 
+	}
+
+	@RequestMapping("isShow.do")
+	public String isShow(Long[] ids) throws Exception {
+		productService.isShow(ids);
+		return "redirect:list.do";
 	}
 
 }

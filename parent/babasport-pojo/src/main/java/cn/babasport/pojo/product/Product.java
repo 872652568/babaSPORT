@@ -88,6 +88,16 @@ public class Product implements Serializable {
     	return null;
     }
     
+    private String price; // 用于jsp页面回显
+
+    public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+    
     public Long getId() {
         return id;
     }

@@ -9,4 +9,7 @@ public interface ProductService {
 
 	// 添加商品
 	public void insertProduct(Product product);
+	
+	//商品上架
+	public void isShow(Long[] ids) throws Exception;
 }
