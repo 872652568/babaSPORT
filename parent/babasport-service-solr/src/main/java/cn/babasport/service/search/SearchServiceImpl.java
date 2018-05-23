@@ -31,7 +31,7 @@ import redis.clients.jedis.Jedis;
 
 @Service("searchService")
 public class SearchServiceImpl implements SearchService {
-	//上传github测试
+	//上传github       测试   
 	@Resource
 	private SolrServer solrServer;
 	@Resource

@@ -20,7 +20,7 @@ public class BrandServiceImpl implements BrandService {
 	private BrandMapper brandMapper;
 	@Resource
 	private Jedis jedis;
-
+	//测试    github   没用
 	@Override
 	public List<Brand> selectBrandsNoPage(String name, Integer isDisplay) {
 		// 创建 brandQuery对象 用来封装查询条件
