@@ -20,7 +20,7 @@
 
 	<!-- spring与solr进行整合 -->
 	<bean id="solrService" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
-		<constructor-arg name="baseURL" value="http://192.168.32.128:8080/solr/" />
+		<constructor-arg name="baseURL" value="http://192.168.220.128:8080/solr/" />
 		
 	</bean>
 
