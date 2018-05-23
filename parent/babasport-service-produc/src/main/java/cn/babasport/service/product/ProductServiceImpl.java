@@ -1,14 +1,18 @@
 package cn.babasport.service.product;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
+import javax.jms.TextMessage;
 
 import org.apache.solr.client.solrj.SolrServer;
-import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.common.SolrInputDocument;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,10 +37,12 @@ public class ProductServiceImpl implements ProductService {
 
 	@Resource
 	private Jedis jedis;
-	
 
 	@Resource
 	private SolrServer solrServer;
+
+	@Resource
+	private JmsTemplate jmsTemplate;
 
 	@Override
 	public Pagination selectProductsHavePage(String name, Long brandId, Boolean isShow, Integer pageNo) {
@@ -111,31 +117,23 @@ public class ProductServiceImpl implements ProductService {
 		// 1、更改isShow为true
 		Product product = new Product();
 		product.setIsShow(true);
-		for (Long id : ids) {
+		for (final Long id : ids) {
 			product.setId(id);
 			productMapper.updateByPrimaryKeySelective(product);
-			
-			// 2、将商品信息保存到索引库
-			Product goods = productMapper.selectByPrimaryKey(id);
-			SolrInputDocument doc = new SolrInputDocument();
-			doc.addField("id", id); // 商品主键
-			doc.addField("url", goods.getImgUrl()); // 商品图片
-			doc.addField("name_ik", goods.getName()); // 商品名称
-			doc.addField("brandId", goods.getBrandId()); // 商品所属品牌
-			// 价格从sku中去取，显示最低价格在页面中
-			// select price from bbs_sku where product_id = ? order by price asc limit 0,1
-			SkuQuery skuQuery = new SkuQuery();
-			skuQuery.setFields("price");
-			skuQuery.createCriteria().andProductIdEqualTo(id);
-			skuQuery.setOrderByClause("price asc");
-			skuQuery.setPageNo(1);
-			skuQuery.setPageSize(1);
-			List<Sku> skus = skuMapper.selectByExample(skuQuery);
-			doc.addField("price", skus.get(0).getPrice()); // 商品价格
-			solrServer.add(doc);
-			solrServer.commit();
+
+			// 将id发送到mq中
+			jmsTemplate.send(new MessageCreator() {
+
+				@Override
+				public Message createMessage(Session session) throws JMSException {
+					// 将业务数据封装成消息发送到mq中
+					TextMessage textMessage = session.createTextMessage(String.valueOf(id));
+					return textMessage;
+				}
+			});
+
 		}
-		
+
 	}
 
 }

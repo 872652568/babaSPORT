@@ -38,6 +38,52 @@
 		}
 	};
 </script>
+<script type="text/javascript">
+	var cId;
+
+	// 选择颜色操作
+	function colorToRed(target, colorId) {
+		cId = colorId;
+		// 2、切换其他的颜色时，将之前选择的颜色信息清空
+		$("#colors div").removeClass("selected");
+		// 1、选择颜色时，该颜色框变红
+		$(target).addClass("selected");
+		// 3、确定颜色时，加载该颜色下的尺码信息（动态加载-手动拼接html片段）
+		var html = '';
+		<c:forEach items="${skus }" var="sku">
+		if ('${sku.colorId}' == colorId) { // 加载该颜色下的尺码信息
+			html += '<div class="item" id="${sku.size}" onclick="sizeToRed(this,\'${sku.size}\')">'
+					+ '<b></b><a href="javascript:;" title="${sku.size}" >${sku.size}</a>'
+					+ '</div>';
+		}
+		$("#sizes").html(html);
+		</c:forEach>
+	}
+
+	// 选择尺码操作
+	function sizeToRed(target, size) {
+		// 2、切换其他的尺码时，将之前选择的尺码信息清空
+		$("#sizes div").removeClass("selected");
+		// 1、选择尺码时，该尺码框变红
+		$(target).addClass("selected");
+		// 3、确定尺码后，就确定的价格信息（size  colorId）
+		<c:forEach items="${skus }" var="sku">
+		if ('${sku.colorId}' == cId && '${sku.size}' == size) {
+			// 确定价格
+			$("#bbs-price").html('${sku.price}');
+		}
+		</c:forEach>
+	}
+
+	// 默认选择第一个颜色下的第一个尺码   trigger
+	$(function() {
+		// 默认选择第一个颜色
+		$("#colors div:first").trigger("click");
+		// 默认选择第一个尺码
+		$("#sizes div:first").trigger("click");
+	})
+</script>
+
 </head>
 <body>
 	<!-- header start -->
@@ -175,8 +221,8 @@
 					<div id="spec-n1" class="jqzoom"
 						clstag="shangpin|keycount|product|spec-n1">
 						<img data-img="1" width="350" height="350"
-							src="${product.images[0]}" alt="${product.name}"
-							jqimg="${product.images[0]}" />
+							src="${product.imgUrls[0]}" alt="${product.name}"
+							jqimg="${product.imgUrls[0]}" />
 					</div>
 
 					<div id="spec-list" clstag="shangpin|keycount|product|spec-n5">
@@ -184,7 +230,7 @@
 						<a href="javascript:;" class="spec-control" id="spec-backward"></a>
 						<div class="spec-items">
 							<ul class="lh">
-								<c:forEach items="${product.images}" var="pic"
+								<c:forEach items="${product.imgUrls}" var="pic"
 									varStatus="status">
 									<c:choose>
 										<c:when test="${status.index == 0 }">

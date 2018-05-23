@@ -10,7 +10,33 @@
 <link rel="stylesheet" type="text/css" href="/css/base.css" media="all" />
 <link type="text/css" rel="stylesheet" href="/css/search.css">
 <script type="text/javascript" src="/js/jquery-1.6.4.js"></script>
+<script type="text/javascript">
 
+	var price = '${price}';
+	var keyword = '${keyword}';
+	var brandId = '${brandId}';
+	
+	// 选择品牌操作
+	function fqBrand(bId){
+		// 判断是否已选价格
+		if(price != null && price != ''){ // 已选价格
+			window.location.href = "/Search?keyword="+keyword+"&brandId="+bId+"&price="+price;
+		}else{
+			window.location.href = "/Search?keyword="+keyword+"&brandId="+bId;
+		}
+	}
+	
+	// 选择价格操作
+	function fqPrice(pri){
+		// 判断是否已选品牌
+		if(brandId != null && brandId != ''){ // 已选品牌
+			window.location.href = "/Search?keyword="+keyword+"&brandId="+brandId+"&price="+pri;
+		}else{
+			window.location.href = "/Search?keyword="+keyword+"&price="+pri;
+		}
+	}
+
+</script>
 </head>
 <body>
 <!-- header start -->
@@ -262,7 +288,7 @@
 					</div>
 				</div>
 				<div class="p-name p-name-type-2">
-					<a target="_blank" title="满129立减10,199减20优惠券,支持货到付款" href="javascript:;" onclick="">
+					<a title="满129立减10,199减20优惠券,支持货到付款" href="javascript:;" onclick="window.open('http://localhost:8084/html/product/${product.id}.html')">
 						<em>${product.name }</em>
 					</a>
 				</div>

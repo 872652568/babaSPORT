@@ -11,12 +11,15 @@ import cn.babasport.mapper.product.BrandMapper;
 import cn.babasport.pojo.page.Pagination;
 import cn.babasport.pojo.product.Brand;
 import cn.babasport.pojo.product.BrandQuery;
+import redis.clients.jedis.Jedis;
 
 @Service("brandService")
 public class BrandServiceImpl implements BrandService {
 
 	@Resource
 	private BrandMapper brandMapper;
+	@Resource
+	private Jedis jedis;
 
 	@Override
 	public List<Brand> selectBrandsNoPage(String name, Integer isDisplay) {
@@ -72,6 +75,9 @@ public class BrandServiceImpl implements BrandService {
 	@Override
 	public void updateBrand(Brand brand) {
 		brandMapper.updateBrand(brand);
+		//更新品牌信息时候将数据保存到redis中
+		jedis.hset("brand", String.valueOf(brand.getId()), brand.getName());
+		
 	}
 
 	@Transactional

@@ -33,6 +33,7 @@
 	
 	<!-- 引用服务 -->
 	<dubbo:reference id="searchService" interface="cn.babasport.service.search.SearchService" url="dubbo://127.0.0.1:20881" /> 
+	<dubbo:reference id="cmsService" interface="cn.babasport.service.cms.CmsService" url="dubbo://127.0.0.1:20882" /> 
 	
 	
 	<!-- 配置全局连接超时时间 -->
